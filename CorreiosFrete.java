@@ -6,13 +6,11 @@ import java.net.URL;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.xpath.XPath;
 import javax.xml.xpath.XPathConstants;
 import javax.xml.xpath.XPathFactory;
 
 import org.w3c.dom.Document;
-import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 
@@ -47,7 +45,7 @@ public class CorreiosFrete {
 	public static DadosFrete consultarFreteSEDEX(String cepDestino, String cepOrigem, Pacote pacote, Parceiro parceiro) throws Exception{
 		String uri = "http://ws.correios.com.br/calculador/CalcPrecoPrazo.aspx?nCdEmpresa="+parceiro.getCdAdmEmpresa()+"&sDsSenha="+parceiro.getSenhaEmpresa()+"&sCepOrigem="+cepOrigem+"&sCepDestino="+cepOrigem+"&nVlPeso="+pacote.getPesoTotalKg()+"&nCdFormato="+pacote.getFormato()+"&nVlComprimento="+pacote.getComprimentoCm()+"&nVlAltura="+pacote.getAlturaCm()+"&nVlLargura="+pacote.getLarguraCm()+"&sCdMaoPropria=n&nVlValorDeclarado=0&sCdAvisoRecebimento=n&nCdServico="+parceiro.getCodigoSEDEX()+"&nVlDiametro="+pacote.getDiametroCm()+"&StrRetorno=xml&nIndicaCalculo=3";
 		URL url = new URL(uri);
-		return getNParse(url);
+		return getNParse(url);	
 	}
 	public static DadosFrete consultarFreteSEDEX(String cepDestino, String cepOrigem, Pacote pacote, ServicosAdicionais servicosAdicionais) throws Exception{
 		String uri = "http://ws.correios.com.br/calculador/CalcPrecoPrazo.aspx?nCdEmpresa=08082650&sDsSenha=564321&sCepOrigem="+cepOrigem+"&sCepDestino="+cepOrigem+"&nVlPeso="+pacote.getPesoTotalKg()+"&nCdFormato="+pacote.getFormato()+"&nVlComprimento="+pacote.getComprimentoCm()+"&nVlAltura="+pacote.getAlturaCm()+"&nVlLargura="+pacote.getLarguraCm()+"&sCdMaoPropria="+servicosAdicionais.getEntregaMaoPropria()+"&nVlValorDeclarado="+servicosAdicionais.getValorDeclarado()+"&sCdAvisoRecebimento="+servicosAdicionais.getAvisoRecebimento()+"&nCdServico=04014&nVlDiametro="+pacote.getDiametroCm()+"&StrRetorno=xml&nIndicaCalculo=3";
@@ -78,7 +76,7 @@ public class CorreiosFrete {
 		String uri = "http://ws.correios.com.br/calculador/CalcPrecoPrazo.aspx?nCdEmpresa="+parceiro.getCdAdmEmpresa()+"&sDsSenha="+parceiro.getSenhaEmpresa()+"&sCepOrigem="+cepOrigem+"&sCepDestino="+cepOrigem+"&nVlPeso="+pacote.getPesoTotalKg()+"&nCdFormato="+pacote.getFormato()+"&nVlComprimento="+pacote.getComprimentoCm()+"&nVlAltura="+pacote.getAlturaCm()+"&nVlLargura="+pacote.getLarguraCm()+"&sCdMaoPropria="+servicosAdicionais.getEntregaMaoPropria()+"&nVlValorDeclarado="+servicosAdicionais.getValorDeclarado()+"&sCdAvisoRecebimento="+servicosAdicionais.getAvisoRecebimento()+"&nCdServico="+parceiro.getCodigoSEDEX10()+"&nVlDiametro="+pacote.getDiametroCm()+"&StrRetorno=xml&nIndicaCalculo=3";
 		URL url = new URL(uri);
 		return getNParse(url);
-	
+	}
 	public static DadosFrete  getNParse(URL url) throws Exception {
 		//Http GET pega o Xml e manipula com o pacote dom
 				
